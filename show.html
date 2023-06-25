@@ -6,6 +6,7 @@
     <title>Document</title>
   </head>
   <body>
+    <!-- onchange="(e) => document.querySelector("#searchBox").value = e.target.value" -->
     <input type="text" name="search" id="searchBox" />
     <span id="searchResult"></span
     ><button id="searchButton" onclick="search()">search</button>
@@ -16,29 +17,32 @@
       let flag = true;
       let str = "";
       let info = document.querySelector("#info").innerHTML;
-      const searchInput = document.querySelector("#searchBox").value;
-      const xmlData = [];
+      const searchInput = document.querySelector("#searchBox");
+      console.log(searchInput);
+      let xmlData = [];
 
       const getXMl = async () => {
         const response = await fetch("./file_926.xml");
         let data = await response.text();
         data = data.split(" ");
-        console.log(data);
-        xmlData.push(data);
-        // console.log(xmlData);
+        // console.log(data);
         for (let i = 0; i < data.length; i++) {
           str += data[i];
           document.querySelector("#info").innerHTML = str;
         }
         info = document.querySelector("#info").innerHTML;
+        xmlData.push(data);
+        // console.log(xmlData);
       };
-      console.log(xmlData);
       const search = () => {
+        // console.log(xmlData);
         console.log("search");
         for (let i = 0; i < xmlData.length; i++) {
-          if (xmlData[i] == searchInput) {
-            console.log("found");
-            document.querySelector("#searchResult").innerHTML = xmlData[i];
+            // console.log(xmlData[i]);
+          if (xmlData[i].includes(searchInput.innerHTML)) {
+            // console.log("found");
+            console.log(searchInput.value);
+            document.querySelector("#searchResult").innerHTML = searchInput.value;
           }
         }
       };
