@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" name="search" id="searchBox" />
+    <span id="searchResult"></span
+    ><button id="searchButton" onclick="search">search</button>
+    <p>--------------------------------</p>
+    <!-- <button onclick="getXMl()">This is show</button> -->
+    <div id="firstname"></div>
+    <script>
+      let flag = true;
+      let str = "";
+      let firstname = document.querySelector("#firstname").innerHTML;
+
+      const xmlData = [];
+      const getXMl = async () => {
+        const response = await fetch("./file_926.xml");
+        let data = await response.text();
+        data = data.split(" ");
+        // console.log(data);
+        xmlData.push(data);
+        console.log(xmlData);
+        for (let i = 0; i < data.length; i++) {
+          str += data[i];
+          document.querySelector("#firstname").innerHTML = str;
+        }
+        firstname = document.querySelector("#firstname").innerHTML;
+      };
+
+      if (flag) {
+        getXMl();
+        flag = false;
+      }
+      //   console.log(xmlData);
+
+      const searchInput = document.querySelector("#searchBox");
+      const search = () => {
+        searchInput.addEventListener("change", (e) => {
+          console.log("search");
+            if (firstname.includes(e.target.value)) {
+              console.log("found");
+              document.querySelector("#searchResult").innerHTML = firstname;
+            }
+        });
+      };
+    </script>
+  </body>
+</html>
