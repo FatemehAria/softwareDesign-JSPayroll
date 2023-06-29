@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <form action="server/server.php" method="post" >
-        <label for="firstname">First Name:</label>
-        <input type="text" name="firstname"/>
+    <link rel="stylesheet" href="dist/output.css" />
+  </head>
+  <body>
+    <form action="server/server.php" method="post">
+      <div class="w-[50%] mx-auto flex flex-col gap-2 mt-10">
+        <label for="firstname" class="">First Name:</label>
+        <input type="text" name="firstname" class="border border-stone-800 rounded-md"/>
 
         <label for="lastname">Last Name:</label>
-        <input type="text" name="lastname"/>
+        <input type="text" name="lastname" class="border border-stone-800 rounded-md" />
 
         <label for="nationalid">NationalID:</label>
-        <input type="text" name="nationalid"/>
+        <input type="text" name="nationalid" class="border border-stone-800 rounded-md" />
 
         <label for="contract">Contract:</label>
-        <select name="contract" id="contract">
-            <option name="contract" value="hourly">Hourly</option>
-            <option name="contract" value="basic">Base</option>
+        <select name="contract" id="contract" class="border border-stone-800 rounded-md">
+          <option name="contract" value="hourly">Hourly</option>
+          <option name="contract" value="basic">Base</option>
         </select>
-        
+
         <label for="position">Position:</label>
-        <select name="position" id="position">
-            <option name="position" value="front-end">Front-End Developer</option>
-            <option name="position" value="back-end">Back-End Developer</option>
-            <option name="position" value="strategist">Strategist</option>
-            <option name="position" value="data-analyst">Data Analyst</option>
+        <select name="position" id="position"  class="border border-stone-800 rounded-md">
+          <option name="position" value="front-end">Front-End Developer</option>
+          <option name="position" value="back-end">Back-End Developer</option>
+          <option name="position" value="strategist">Strategist</option>
+          <option name="position" value="data-analyst">Data Analyst</option>
         </select>
 
         <label for="personalid">PersonelID:</label>
-        <input type="text" name="personalid" placeholder="Enter your personalID"/>
-  
+        <input
+          type="text"
+          name="personalid"
+          class="border border-stone-800 rounded-md"
+        />
+
         <button>submit</button>
-      </form>
-</body>
+      </div>
+    </form>
+  </body>
 </html>
