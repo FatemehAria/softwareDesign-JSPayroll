@@ -4,28 +4,54 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Acme&family=Playfair+Display&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="dist/output.css" />
   </head>
   <body>
-    <form action="server/server.php" method="post">
+    <form action="server/server.php" method="post" class="font-display">
       <div class="w-[50%] mx-auto flex flex-col gap-2 mt-10">
         <label for="firstname" class="">First Name:</label>
-        <input type="text" name="firstname" class="border border-stone-800 rounded-md"/>
+        <input
+          type="text"
+          name="firstname"
+          class="border border-stone-800 rounded-md p-2"
+        />
 
         <label for="lastname">Last Name:</label>
-        <input type="text" name="lastname" class="border border-stone-800 rounded-md" />
+        <input
+          type="text"
+          name="lastname"
+          class="border border-stone-800 rounded-md p-2"
+        />
 
         <label for="nationalid">NationalID:</label>
-        <input type="text" name="nationalid" class="border border-stone-800 rounded-md" />
+        <input
+          type="text"
+          name="nationalid"
+          class="border border-stone-800 rounded-md p-2"
+        />
 
         <label for="contract">Contract:</label>
-        <select name="contract" id="contract" class="border border-stone-800 rounded-md">
+        <select
+          name="contract"
+          id="contract"
+          class="border border-stone-800 rounded-md p-2"
+        >
           <option name="contract" value="hourly">Hourly</option>
           <option name="contract" value="basic">Base</option>
         </select>
 
         <label for="position">Position:</label>
-        <select name="position" id="position"  class="border border-stone-800 rounded-md">
+        <select
+          name="position"
+          id="position"
+          class="border border-stone-800 rounded-md p-2"
+        >
           <option name="position" value="front-end">Front-End Developer</option>
           <option name="position" value="back-end">Back-End Developer</option>
           <option name="position" value="strategist">Strategist</option>
@@ -36,10 +62,10 @@
         <input
           type="text"
           name="personalid"
-          class="border border-stone-800 rounded-md"
+          class="border border-stone-800 rounded-md p-2"
         />
 
-        <button>submit</button>
+        <button class="bg-teal-500 text-white p-2 w-[20%] mx-auto rounded-lg text-lg hover:bg-teal-600">submit</button>
       </div>
     </form>
   </body>
