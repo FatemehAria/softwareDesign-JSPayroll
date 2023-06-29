@@ -17,31 +17,24 @@
       let str = "";
       let info = document.querySelector("#info").innerHTML;
       const searchInput = document.querySelector("#searchBox");
-      console.log(searchInput);
       let xmlData = [];
 
       const getXMl = async () => {
         const response = await fetch("./file_926.xml");
         let data = await response.text();
         data = data.split(" ");
-        // console.log(data);
         for (let i = 0; i < data.length; i++) {
           str += data[i];
           document.querySelector("#info").innerHTML = str;
         }
         info = document.querySelector("#info").innerHTML;
         xmlData.push(data);
-        // console.log(xmlData);
       };
 
       const search = () => {
-        // console.log(xmlData);
-        // console.log("search");
         for (let i = 0; i < xmlData.length; i++) {
-          console.log(xmlData[i]);
-          if (xmlData[i].includes(searchInput.value)) {
-            // console.log("found");
-            console.log(searchInput.value);
+          console.log(searchInput.value);
+          if (JSON.stringify(xmlData[i]).includes(searchInput.value)) {
             document.querySelector("#searchResult").innerHTML =
               searchInput.value;
           } else {
@@ -50,6 +43,8 @@
           }
         }
       };
+
+      
       if (flag) {
         getXMl();
         flag = false;
