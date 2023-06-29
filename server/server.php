@@ -1,9 +1,4 @@
 <?php
-// echo $_POST['firstname'];
-// echo $_POST['lastname'];
-// echo $_POST['nationalid'];
-// echo $_POST['contacrt'];
-// echo $_POST['personalid'];
 $str = "";
 foreach ($_POST as $key => $value) {
     if (is_array($value)) {
@@ -16,6 +11,6 @@ foreach ($_POST as $key => $value) {
         $str .= "</pre> ";
     }
 }
-echo $str;
+echo $str .= "<p>-------------------------------------</p>";
 file_put_contents("../file_926.xml", $str, FILE_APPEND);
 header("Location:../show.html");

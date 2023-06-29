@@ -4,15 +4,42 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="dist/output.css" />
   </head>
   <body>
-    <input type="text" name="search" id="searchBox" />
-    <button id="searchButton" onclick="search()">search</button>
-    <button id="searchButton" onclick="calcSallary()">calc</button>
-    <span id="searchResult"></span>
-    <p>--------------------------------</p>
-    <!-- <button onclick="getXMl()">This is show</button> -->
-    <div id="info"></div>
+    <div class="w-[60%] mx-auto mt-7">
+      <div>
+        <input
+          type="text"
+          name="search"
+          id="searchBox"
+          class="border border-stone-800 rounded-md p-1"
+        />
+        <button
+          id="searchButton"
+          onclick="search()"
+          class="bg-teal-500 text-white mx-auto rounded-lg text-lg w-[20%] p-1 hover:bg-teal-600"
+        >
+          search
+        </button>
+        <!-- <button
+          id="searchButton"
+          onclick="calcSallary()"
+          class="bg-teal-500 text-white mx-auto rounded-lg text-lg w-[20%] p-1 hover:bg-teal-600"
+        >
+          calc
+        </button> -->
+        <span id="sallary" class="font-semibold"></span>
+        <p id="searchResult" class="font-semibold"></p>
+      </div>
+
+      <div
+        class="border p-10 mt-4 leading-8 border-teal-900 border-2 rounded-md"
+      >
+        <div id="info"></div>
+      </div>
+    </div>
+
     <script>
       let flag = true;
       let str = "";
@@ -33,87 +60,70 @@
         }
         info = document.querySelector("#info").innerHTML;
         xmlData.push(data);
+
+        // Sallary Calculation
+        calcSallary();
       };
 
       const search = () => {
         for (let i = 0; i < xmlData.length; i++) {
           // console.log(searchInput.value);
           if (JSON.stringify(xmlData[i]).includes(searchInput.value)) {
+            // for(let k = 0; k < xmlData.length ; k++){
+            //   xmlData.map(item => {
+            //     console.log(item);
+            //   })
+            // }
             document.querySelector("#searchResult").innerHTML =
               searchInput.value;
           } else {
             document.querySelector("#searchResult").innerHTML =
-              "does not exist";
+              `<span class="text-red-700">Not Found</span>`;
           }
         }
       };
 
       const calcSallary = () => {
-        for (let i = 0; i < xmlData.length; i++) {
+        for (let j = 0; j < xmlData.length; j++) {
           xmlData.map((item) => {
             pos = item[4];
           });
           console.log(pos);
-          if (JSON.stringify(xmlData[i]).includes("basic")) {
+          if (JSON.stringify(xmlData[j]).includes("basic")) {
             if (pos.includes("front")) {
               baseSallary = 900;
-              document.querySelector("#searchResult").innerHTML =
-                baseSallary * 40;
+              document.querySelector("#sallary").innerHTML =
+                "Sallary: " + baseSallary * 40;
             } else if (pos.includes("back")) {
               baseSallary = 1000;
-              document.querySelector("#searchResult").innerHTML =
-                baseSallary * 40;
+              document.querySelector("#sallary").innerHTML =
+                "Sallary: " + baseSallary * 40;
             } else if (pos.includes("strategist")) {
               baseSallary = 700;
-              document.querySelector("#searchResult").innerHTML =
-                baseSallary * 40;
+              document.querySelector("#sallary").innerHTML =
+                "Sallary: " + baseSallary * 40;
             } else {
               baseSallary = 700;
-              document.querySelector("#searchResult").innerHTML =
-                baseSallary * 40;
+              document.querySelector("#sallary").innerHTML =
+                "Sallary: " + baseSallary * 40;
             }
-            // switch (pos) {
-            //   case pos.includes("front"):
-            //     console.log(JSON.stringify(xmlData[i]).includes("FRONT"));
-            //     baseSallary = 900;
-            //     document.querySelector("#searchResult").innerHTML =
-            //       baseSallary * 40;
-            //     break;
-            //   case JSON.stringify(pos).includes("back"):
-            //     baseSallary = 1000;
-            //     document.querySelector("#searchResult").innerHTML =
-            //       baseSallary * 40;
-            //     break;
-            //   case JSON.stringify(pos).includes("strategist"):
-            //     baseSallary = 700;
-            //     document.querySelector("#searchResult").innerHTML =
-            //       baseSallary * 40;
-            //     break;
-            //   case JSON.stringify(pos).includes("data"):
-            //     baseSallary = 700;
-            //     document.querySelector("#searchResult").innerHTML =
-            //       baseSallary * 40;
-            //     break;
-            //   default:
-            //     return;
-            // }
           } else {
             if (pos.includes("front")) {
               hourlySallary = 800;
-              document.querySelector("#searchResult").innerHTML =
-                hourlySallary * 40;
+              document.querySelector("#sallary").innerHTML =
+                "Sallary: " + hourlySallary * 40;
             } else if (pos.includes("back")) {
               hourlySallary = 900;
-              document.querySelector("#searchResult").innerHTML =
-                hourlySallary * 40;
+              document.querySelector("#sallary").innerHTML =
+                "Sallary: " + hourlySallary * 40;
             } else if (pos.includes("strategist")) {
               hourlySallary = 600;
-              document.querySelector("#searchResult").innerHTML =
-                hourlySallary * 40;
+              document.querySelector("#sallary").innerHTML =
+                "Sallary: " + hourlySallary * 40;
             } else {
               hourlySallary = 600;
-              document.querySelector("#searchResult").innerHTML =
-                hourlySallary * 40;
+              document.querySelector("#sallary").innerHTML =
+                "Sallary: " + hourlySallary * 40;
             }
           }
         }

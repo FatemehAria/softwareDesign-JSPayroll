@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["*.{html,js}"],
+  content: ["*.{html,js,xml,php}"],
   theme: {
     fontFamily: {
       display: ["Acme", "Playfair Display"],

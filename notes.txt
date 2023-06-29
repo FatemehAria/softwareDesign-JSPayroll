@@ -1,0 +1,25 @@
+            // switch (pos) {
+            //   case pos.includes("front"):
+            //     console.log(JSON.stringify(xmlData[i]).includes("FRONT"));
+            //     baseSallary = 900;
+            //     document.querySelector("#searchResult").innerHTML =
+            //       baseSallary * 40;
+            //     break;
+            //   case JSON.stringify(pos).includes("back"):
+            //     baseSallary = 1000;
+            //     document.querySelector("#searchResult").innerHTML =
+            //       baseSallary * 40;
+            //     break;
+            //   case JSON.stringify(pos).includes("strategist"):
+            //     baseSallary = 700;
+            //     document.querySelector("#searchResult").innerHTML =
+            //       baseSallary * 40;
+            //     break;
+            //   case JSON.stringify(pos).includes("data"):
+            //     baseSallary = 700;
+            //     document.querySelector("#searchResult").innerHTML =
+            //       baseSallary * 40;
+            //     break;
+            //   default:
+            //     return;
+            // }
