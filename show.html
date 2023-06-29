@@ -6,10 +6,9 @@
     <title>Document</title>
   </head>
   <body>
-    <!-- onchange="(e) => document.querySelector("#searchBox").value = e.target.value" -->
     <input type="text" name="search" id="searchBox" />
-    <span id="searchResult"></span
-    ><button id="searchButton" onclick="search()">search</button>
+    <button id="searchButton" onclick="search()">search</button>
+    <span id="searchResult"></span>
     <p>--------------------------------</p>
     <!-- <button onclick="getXMl()">This is show</button> -->
     <div id="info"></div>
@@ -34,15 +33,20 @@
         xmlData.push(data);
         // console.log(xmlData);
       };
+
       const search = () => {
         // console.log(xmlData);
-        console.log("search");
+        // console.log("search");
         for (let i = 0; i < xmlData.length; i++) {
-            // console.log(xmlData[i]);
-          if (xmlData[i].includes(searchInput.innerHTML)) {
+          console.log(xmlData[i]);
+          if (xmlData[i].includes(searchInput.value)) {
             // console.log("found");
             console.log(searchInput.value);
-            document.querySelector("#searchResult").innerHTML = searchInput.value;
+            document.querySelector("#searchResult").innerHTML =
+              searchInput.value;
+          } else {
+            document.querySelector("#searchResult").innerHTML =
+              "does not exist";
           }
         }
       };
