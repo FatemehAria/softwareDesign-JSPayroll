@@ -8,6 +8,7 @@
   <body>
     <input type="text" name="search" id="searchBox" />
     <button id="searchButton" onclick="search()">search</button>
+    <button id="searchButton" onclick="calcSallary()">calc</button>
     <span id="searchResult"></span>
     <p>--------------------------------</p>
     <!-- <button onclick="getXMl()">This is show</button> -->
@@ -15,6 +16,9 @@
     <script>
       let flag = true;
       let str = "";
+      let baseSallary;
+      let hourlySallary;
+      let pos;
       let info = document.querySelector("#info").innerHTML;
       const searchInput = document.querySelector("#searchBox");
       let xmlData = [];
@@ -33,7 +37,7 @@
 
       const search = () => {
         for (let i = 0; i < xmlData.length; i++) {
-          console.log(searchInput.value);
+          // console.log(searchInput.value);
           if (JSON.stringify(xmlData[i]).includes(searchInput.value)) {
             document.querySelector("#searchResult").innerHTML =
               searchInput.value;
@@ -44,7 +48,77 @@
         }
       };
 
-      
+      const calcSallary = () => {
+        for (let i = 0; i < xmlData.length; i++) {
+          xmlData.map((item) => {
+            pos = item[4];
+          });
+          console.log(pos);
+          if (JSON.stringify(xmlData[i]).includes("basic")) {
+            if (pos.includes("front")) {
+              baseSallary = 900;
+              document.querySelector("#searchResult").innerHTML =
+                baseSallary * 40;
+            } else if (pos.includes("back")) {
+              baseSallary = 1000;
+              document.querySelector("#searchResult").innerHTML =
+                baseSallary * 40;
+            } else if (pos.includes("strategist")) {
+              baseSallary = 700;
+              document.querySelector("#searchResult").innerHTML =
+                baseSallary * 40;
+            } else {
+              baseSallary = 700;
+              document.querySelector("#searchResult").innerHTML =
+                baseSallary * 40;
+            }
+            // switch (pos) {
+            //   case pos.includes("front"):
+            //     console.log(JSON.stringify(xmlData[i]).includes("FRONT"));
+            //     baseSallary = 900;
+            //     document.querySelector("#searchResult").innerHTML =
+            //       baseSallary * 40;
+            //     break;
+            //   case JSON.stringify(pos).includes("back"):
+            //     baseSallary = 1000;
+            //     document.querySelector("#searchResult").innerHTML =
+            //       baseSallary * 40;
+            //     break;
+            //   case JSON.stringify(pos).includes("strategist"):
+            //     baseSallary = 700;
+            //     document.querySelector("#searchResult").innerHTML =
+            //       baseSallary * 40;
+            //     break;
+            //   case JSON.stringify(pos).includes("data"):
+            //     baseSallary = 700;
+            //     document.querySelector("#searchResult").innerHTML =
+            //       baseSallary * 40;
+            //     break;
+            //   default:
+            //     return;
+            // }
+          } else {
+            if (pos.includes("front")) {
+              hourlySallary = 800;
+              document.querySelector("#searchResult").innerHTML =
+                hourlySallary * 40;
+            } else if (pos.includes("back")) {
+              hourlySallary = 900;
+              document.querySelector("#searchResult").innerHTML =
+                hourlySallary * 40;
+            } else if (pos.includes("strategist")) {
+              hourlySallary = 600;
+              document.querySelector("#searchResult").innerHTML =
+                hourlySallary * 40;
+            } else {
+              hourlySallary = 600;
+              document.querySelector("#searchResult").innerHTML =
+                hourlySallary * 40;
+            }
+          }
+        }
+      };
+
       if (flag) {
         getXMl();
         flag = false;
