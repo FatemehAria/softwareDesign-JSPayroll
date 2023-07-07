@@ -11,5 +11,6 @@ foreach ($_POST as $key => $value) {
         $str .= "</pre> ";
     }
 }
+// echo $str .= "<p>-------------------------------------</p>";
 file_put_contents("../xmlFile.xml", $str, FILE_APPEND);
 header("Location:../show.html");
