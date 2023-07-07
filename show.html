@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="dist/output.css" />
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   </head>
   <body>
     <div class="w-[60%] mx-auto mt-7">
@@ -23,7 +24,7 @@
           search
         </button>
         <button
-          id="ssllaryButton"
+          id="sallaryButton"
           onclick="calcSallary()"
           class="bg-teal-500 text-white mx-auto rounded-lg text-lg w-[20%] p-1 hover:bg-teal-600"
         >
@@ -37,7 +38,13 @@
         class="border p-10 mt-4 leading-8 border-teal-900 border-2 rounded-md"
       >
         <div id="info"></div>
-      </div>
+<!-- 
+        <button
+          id="editButton"
+          class="bg-teal-500 text-white mx-auto rounded-lg text-lg w-[20%] p-1 hover:bg-teal-600"
+        >
+          Edit
+        </button> -->
     </div>
 
     <script>
@@ -48,6 +55,7 @@
       let pos;
       let info = document.querySelector("#info").innerHTML;
       const searchInput = document.querySelector("#searchBox");
+      // const editButton = document.querySelector("#editButton");
       let xmlData = [];
 
       const getXMl = async () => {
@@ -61,9 +69,31 @@
         }
         info = document.querySelector("#info").innerHTML;
         xmlData.push(data);
-
       };
 
+      $(async function(){
+        const response = await fetch("./xmlFile.xml");
+        let data = await response.text();
+        data = data.split(" ");
+        for(let k = 0; k < data.length ; k++){
+          // console.log($(data[k]).text());
+          $(data[k]).click(function(){
+            var t = $(data[k]).text();
+            console.log(t);
+            $(this).text('').append($('<input />',{'value' : t}));
+            $('input').focus();
+          })
+          $(data[k]).on('blur','input',function() {
+          $(this).parent().text($(this).val());
+      });
+          // data[k] = `<input type='text' id='newField'/> ${data[k]}`
+          // console.log(data);
+          // xmlData.find(xmlData[k]).text($("#newField").val())
+      //   })
+      }
+      // $.post("./xmlFile.xml" , xmlData )
+      })
+      
       const calcSallary = () => {
         xmlData.map((item, index) => {
           pos = item[4];
@@ -71,53 +101,61 @@
           if (JSON.stringify(xmlData[index]).includes("basic")) {
             if (pos.includes("front")) {
               baseSallary = 900;
-              xmlData.push({sallary : baseSallary * 40});
+              xmlData.push({ sallary: baseSallary * 40 });
               console.log(xmlData);
-              document.querySelector("#sallary").innerHTML = "Sallary: " + JSON.stringify(xmlData[1].sallary) + "$";
+              document.querySelector("#sallary").innerHTML =
+                "Sallary: " + JSON.stringify(xmlData[1].sallary) + "$";
               console.log(xmlData[1]);
             } else if (pos.includes("back")) {
               baseSallary = 1000;
-              xmlData.push({sallary : baseSallary * 40});
+              xmlData.push({ sallary: baseSallary * 40 });
               console.log(xmlData);
-              document.querySelector("#sallary").innerHTML = "Sallary: " + JSON.stringify(xmlData[1].sallary) + "$";
+              document.querySelector("#sallary").innerHTML =
+                "Sallary: " + JSON.stringify(xmlData[1].sallary) + "$";
               console.log(xmlData[1]);
             } else if (pos.includes("strategist")) {
               baseSallary = 700;
-              xmlData.push({sallary : baseSallary * 40});
+              xmlData.push({ sallary: baseSallary * 40 });
               console.log(xmlData);
-              document.querySelector("#sallary").innerHTML = "Sallary: " + JSON.stringify(xmlData[1].sallary) + "$";
+              document.querySelector("#sallary").innerHTML =
+                "Sallary: " + JSON.stringify(xmlData[1].sallary) + "$";
               console.log(xmlData[1]);
             } else {
               baseSallary = 700;
-              xmlData.push({sallary : baseSallary * 40});
+              xmlData.push({ sallary: baseSallary * 40 });
               console.log(xmlData);
-              document.querySelector("#sallary").innerHTML = "Sallary: " + JSON.stringify(xmlData[1].sallary) + "$";
+              document.querySelector("#sallary").innerHTML =
+                "Sallary: " + JSON.stringify(xmlData[1].sallary) + "$";
               console.log(xmlData[1]);
             }
           } else {
             if (pos.includes("front")) {
               hourlySallary = 800;
-              xmlData.push({sallary : hourlySallary * 40});
+              xmlData.push({ sallary: hourlySallary * 40 });
               console.log(xmlData);
-              document.querySelector("#sallary").innerHTML = "Sallary: " + JSON.stringify(xmlData[1].sallary) + "$";
+              document.querySelector("#sallary").innerHTML =
+                "Sallary: " + JSON.stringify(xmlData[1].sallary) + "$";
               console.log(xmlData[1]);
             } else if (pos.includes("back")) {
               hourlySallary = 900;
-              xmlData.push({sallary : hourlySallary * 40});
+              xmlData.push({ sallary: hourlySallary * 40 });
               console.log(xmlData);
-              document.querySelector("#sallary").innerHTML = "Sallary: " + JSON.stringify(xmlData[1].sallary) + "$";
+              document.querySelector("#sallary").innerHTML =
+                "Sallary: " + JSON.stringify(xmlData[1].sallary) + "$";
               console.log(xmlData[1]);
             } else if (pos.includes("strategist")) {
               hourlySallary = 600;
-              xmlData.push({sallary : hourlySallary * 40});
+              xmlData.push({ sallary: hourlySallary * 40 });
               console.log(xmlData);
-              document.querySelector("#sallary").innerHTML = "Sallary: " + JSON.stringify(xmlData[1].sallary) + "$";
+              document.querySelector("#sallary").innerHTML =
+                "Sallary: " + JSON.stringify(xmlData[1].sallary) + "$";
               console.log(xmlData[1]);
             } else {
               hourlySallary = 600;
-              xmlData.push({sallary : hourlySallary * 40});
+              xmlData.push({ sallary: hourlySallary * 40 });
               console.log(xmlData);
-              document.querySelector("#sallary").innerHTML = "Sallary: " + JSON.stringify(xmlData[1].sallary) + "$";
+              document.querySelector("#sallary").innerHTML =
+                "Sallary: " + JSON.stringify(xmlData[1].sallary) + "$";
               console.log(xmlData[1]);
             }
           }
@@ -127,7 +165,9 @@
       const search = () => {
         for (let i = 0; i < xmlData.length; i++) {
           if (JSON.stringify(xmlData[i]).includes(searchInput.value)) {
-            document.querySelector("#searchResult").innerHTML = `<span class="text-green-700">User Found</span>`;
+            document.querySelector(
+              "#searchResult"
+            ).innerHTML = `<span class="text-green-700">User Found</span>`;
           } else {
             document.querySelector(
               "#searchResult"
