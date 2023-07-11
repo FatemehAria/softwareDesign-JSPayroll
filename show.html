@@ -38,13 +38,7 @@
         class="border p-10 mt-4 leading-8 border-teal-900 border-2 rounded-md"
       >
         <div id="info"></div>
-<!-- 
-        <button
-          id="editButton"
-          class="bg-teal-500 text-white mx-auto rounded-lg text-lg w-[20%] p-1 hover:bg-teal-600"
-        >
-          Edit
-        </button> -->
+
     </div>
 
     <script>
@@ -55,44 +49,69 @@
       let pos;
       let info = document.querySelector("#info").innerHTML;
       const searchInput = document.querySelector("#searchBox");
-      // const editButton = document.querySelector("#editButton");
+      const editButton = document.querySelector("#editButton");
       let xmlData = [];
 
       const getXMl = async () => {
         const response = await fetch("./xmlFile.xml");
         let data = await response.text();
-        console.log(data);
         data = data.split(" ");
+        console.log(data);
         for (let i = 0; i < data.length; i++) {
           str += data[i];
           document.querySelector("#info").innerHTML = str;
         }
         info = document.querySelector("#info").innerHTML;
         xmlData.push(data);
+
+        deletion();
       };
 
-      $(async function(){
+      const deletion = async () => {
         const response = await fetch("./xmlFile.xml");
         let data = await response.text();
-        data = data.split(" ");
-        for(let k = 0; k < data.length ; k++){
-          // console.log($(data[k]).text());
-          $(data[k]).click(function(){
-            var t = $(data[k]).text();
-            console.log(t);
-            $(this).text('').append($('<input />',{'value' : t}));
-            $('input').focus();
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(data,'text/xml');
+        // console.log(xmlDoc);
+        data = data.split("</pre>");
+        const xmlData = xmlDoc.getElementsByTagName('button');
+        console.log(xmlData)
+        for (let i = 0; i < xmlData.length; i++) {
+          const button = document.createElement('button');
+          button.textContent = 'Delete';
+          button.addEventListener("click" , () => {
+            const preTag = button.parentElement;
+            console.log(preTag)
+            // preTag.remove();
+
           })
-          $(data[k]).on('blur','input',function() {
-          $(this).parent().text($(this).val());
-      });
+          console.log(button)
+          document.querySelector("#info").appendChild(button)
+        }
+      }
+
+      // $(async function(){
+      //   const response = await fetch("./xmlFile.xml");
+      //   let data = await response.text();
+      //   data = data.split(" ");
+      //   for(let k = 0; k < data.length ; k++){
+      //     // console.log($(data[k]).text());
+      //     $(data[k]).click(function(){
+      //       var t = $(data[k]).text();
+      //       console.log(t);
+      //       $(this).text('').append($('<input />',{'value' : t}));
+      //       $('input').focus();
+      //     })
+      //     $(data[k]).on('blur','input',function() {
+      //     $(this).parent().text($(this).val());
+      // });
           // data[k] = `<input type='text' id='newField'/> ${data[k]}`
           // console.log(data);
           // xmlData.find(xmlData[k]).text($("#newField").val())
       //   })
-      }
+      // }
       // $.post("./xmlFile.xml" , xmlData )
-      })
+      // })
       
       const calcSallary = () => {
         xmlData.map((item, index) => {

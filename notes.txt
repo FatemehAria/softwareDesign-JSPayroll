@@ -23,3 +23,16 @@
             //   default:
             //     return;
             // }
+
+            
+        // data = data.split("</pre> ");
+        // data.pop()
+        // for(let i = 0; i < data.length ; i++){
+          // console.log(data[i])
+          // console.log(data[i].includes("<button type='submit' name='delete'>Delete</button>"))
+          // if((data[i].includes("<button type='submit' name='delete'>Delete</button>"))){
+          //   data[i] = data[i].split("</br>");
+          //   console.log(data[i][1]);
+            // console.log(JSON.parse(data[i][1]))
+          // }
+        // }
