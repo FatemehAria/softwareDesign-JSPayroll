@@ -1,5 +1,4 @@
 <?php
-// $str = "";
 $str .= "<div>";
 foreach ($_POST as $key => $value) {
     if (is_array($value)) {

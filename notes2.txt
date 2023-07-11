@@ -1,0 +1,13 @@
+      // const getXMl = async () => {
+      //   const response = await fetch("./xmlFile.xml");
+      //   let data = await response.text();
+      //   data = data.split("<button>Delete</button>");
+      //   console.log(data);
+      //   for (let i = 0; i < data.length; i++) {
+      //     str += data[i];
+      //     document.querySelector("#info").innerHTML = str;
+      //   }
+      //   info = document.querySelector("#info").innerHTML;
+      //   xmlData.push(data);
+
+      // };
