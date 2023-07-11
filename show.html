@@ -52,41 +52,42 @@
       const editButton = document.querySelector("#editButton");
       let xmlData = [];
 
-      const getXMl = async () => {
-        const response = await fetch("./xmlFile.xml");
-        let data = await response.text();
-        data = data.split(" ");
-        console.log(data);
-        for (let i = 0; i < data.length; i++) {
-          str += data[i];
-          document.querySelector("#info").innerHTML = str;
-        }
-        info = document.querySelector("#info").innerHTML;
-        xmlData.push(data);
+      // const getXMl = async () => {
+      //   const response = await fetch("./xmlFile.xml");
+      //   let data = await response.text();
+      //   data = data.split("<button>Delete</button>");
+      //   console.log(data);
+      //   for (let i = 0; i < data.length; i++) {
+      //     str += data[i];
+      //     document.querySelector("#info").innerHTML = str;
+      //   }
+      //   info = document.querySelector("#info").innerHTML;
+      //   xmlData.push(data);
 
-        deletion();
-      };
+      // };
+
 
       const deletion = async () => {
         const response = await fetch("./xmlFile.xml");
         let data = await response.text();
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(data,'text/xml');
-        // console.log(xmlDoc);
-        data = data.split("</pre>");
+        data = data.split("<button>Delete</button>");
         const xmlData = xmlDoc.getElementsByTagName('button');
-        console.log(xmlData)
-        for (let i = 0; i < xmlData.length; i++) {
+        for (let i = 0; i < data.length; i++) {
           const button = document.createElement('button');
           button.textContent = 'Delete';
           button.addEventListener("click" , () => {
-            const preTag = button.parentElement;
+            const preTag = button.previousElementSibling;
             console.log(preTag)
-            // preTag.remove();
-
+            preTag.innerHTML = '';
           })
-          console.log(button)
-          document.querySelector("#info").appendChild(button)
+          if(data[i].includes("<button>Delete</button>")){
+            console.log(data[i])
+            data[i] = data[i].replace("<button>Delete</button>", button.outerHTML);
+          }
+          document.querySelector("#info").appendChild(button);
+          document.querySelector("#info").insertAdjacentHTML('beforeend', data[i]);
         }
       }
 
@@ -196,7 +197,8 @@
       };
 
       if (flag) {
-        getXMl();
+        // getXMl();
+        deletion()
         flag = false;
       }
     </script>
