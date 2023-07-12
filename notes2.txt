@@ -11,3 +11,26 @@
       //   xmlData.push(data);
 
       // };
+
+            // $(async function(){
+      //   const response = await fetch("./xmlFile.xml");
+      //   let data = await response.text();
+      //   data = data.split(" ");
+      //   for(let k = 0; k < data.length ; k++){
+      //     // console.log($(data[k]).text());
+      //     $(data[k]).click(function(){
+      //       var t = $(data[k]).text();
+      //       console.log(t);
+      //       $(this).text('').append($('<input />',{'value' : t}));
+      //       $('input').focus();
+      //     })
+      //     $(data[k]).on('blur','input',function() {
+      //     $(this).parent().text($(this).val());
+      // });
+          // data[k] = `<input type='text' id='newField'/> ${data[k]}`
+          // console.log(data);
+          // xmlData.find(xmlData[k]).text($("#newField").val())
+      //   })
+      // }
+      // $.post("./xmlFile.xml" , xmlData )
+      // })

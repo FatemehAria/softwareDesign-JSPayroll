@@ -7,6 +7,7 @@ foreach ($_POST as $key => $value) {
         print_r("$key:$value[0]");
         $str .= "</p>";
         $str .= "<button>Delete</button>";
+        $str .= "<button>Edit</button>";
         $str .= "</pre>";
     } else {
         $str .= "<pre>";
@@ -14,6 +15,7 @@ foreach ($_POST as $key => $value) {
         $str .= "$key:$value";
         $str .= "</p>";
         $str .= "<button>Delete</button>";
+        $str .= "<button>Edit</button>";
         $str .= "</pre>";
     }
 }

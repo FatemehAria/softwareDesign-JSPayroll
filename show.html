@@ -52,12 +52,12 @@
       const editButton = document.querySelector("#editButton");
       let xmlData = [];
 
-      const del = async () => {
+      const editAndDel = async () => {
         const response = await fetch("./xmlFile.xml");
         let data = await response.text();
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(data,'text/xml');
-        data = data.split("<button>Delete</button>");
+        data = data.split("<button>Delete</button><button>Edit</button>");
         const xmlData = xmlDoc.getElementsByTagName('button');
         for (let i = 0; i < data.length; i++) {
           const button = document.createElement('button');
@@ -66,38 +66,83 @@
             const preTag = button.previousElementSibling;
             console.log(preTag)
             preTag.innerHTML = '';
+            button.innerHTML = '';
+          })
+          const editButton = document.createElement('button');
+          editButton.textContent = 'Edit';
+          
+          editButton.addEventListener("click",() => {
+            const pTags = document.getElementsByTagName('p');
+            const inputField = document.createElement('input');
+            // pTags[i].outerHTML = inputField;
+            inputField.value = pTags[i].textContent;
+            pTags[i].parentNode.replaceChild(inputField, pTags[i]);
+            inputField.addEventListener("blur", () => {
+            const updatedValue = inputField.value;
+            const pTag = document.createElement('p');
+            pTag.textContent = updatedValue;
+            inputField.parentNode.replaceChild(pTag, inputField);
+            const xmlData = xmlDoc.getElementsByTagName('p');
+            xmlData[i].textContent = updatedValue;
+            
+            // Convert the XML to string
+            // const serializer = new XMLSerializer();
+            // const updatedXmlString = serializer.serializeToString(xmlDoc);
+            
+            // // Send a POST request to update the XML file
+            // fetch('server/update.php', {
+            //   method: 'POST',
+            //   headers: {
+            //     'Content-Type': 'application/xml',
+            //   },
+            //   body: updatedXmlString,
+            // })
+            // .then(response => response.text())
+            // .then(data => {
+            //   console.log('XML file updated successfully');
+            // })
+          });
+            // inputField.addEventListener("change" , () => {
+            //   let newData = inputField[i].value;
+            //   pTags[i].replace(pTags.innerHTML , newData)
+            // })
+            console.log("edit")
           })
           if(data[i].includes("<button>Delete</button>")){
             console.log(data[i])
             data[i] = data[i].replace("<button>Delete</button>", button.outerHTML);
           }
+          if(data[i].includes("<button>Edit</button>")){
+            console.log(data[i])
+            data[i] = data[i].replace("<button>Edit</button>", editButton.outerHTML);
+          }
           document.querySelector("#info").appendChild(button);
+          document.querySelector("#info").appendChild(editButton);
           document.querySelector("#info").insertAdjacentHTML('beforeend', data[i]);
         }
       }
 
-      // $(async function(){
+      // const edit = async () => {
       //   const response = await fetch("./xmlFile.xml");
       //   let data = await response.text();
-      //   data = data.split(" ");
-      //   for(let k = 0; k < data.length ; k++){
-      //     // console.log($(data[k]).text());
-      //     $(data[k]).click(function(){
-      //       var t = $(data[k]).text();
-      //       console.log(t);
-      //       $(this).text('').append($('<input />',{'value' : t}));
-      //       $('input').focus();
+      //   const parser = new DOMParser();
+      //   const xmlDoc = parser.parseFromString(data, 'text/xml');
+      //   data = data.split("<button>Edit</button>");
+      //   for (let i = 0; i < data.length; i++) {
+      //     const editButton = document.createElement('button');
+      //     editButton.textContent = 'Edit';
+      //     editButton.addEventListener("click" , () => {
+      //       const preTag = editButton.previousElementSibling;
+      //       console.log(preTag)
       //     })
-      //     $(data[k]).on('blur','input',function() {
-      //     $(this).parent().text($(this).val());
-      // });
-          // data[k] = `<input type='text' id='newField'/> ${data[k]}`
-          // console.log(data);
-          // xmlData.find(xmlData[k]).text($("#newField").val())
-      //   })
+      //     if(data[i].includes("<button>Edit</button>")){
+      //       console.log(data[i])
+      //       data[i] = data[i].replace("<button>Edit</button>", editButton.outerHTML);
+      //     }
+      //     document.querySelector("#info").appendChild(editButton);
+      //     document.querySelector("#info").insertAdjacentHTML('beforeend', data[i]);
+      //   }
       // }
-      // $.post("./xmlFile.xml" , xmlData )
-      // })
       
       const calcSallary = () => {
         xmlData.map((item, index) => {
@@ -182,7 +227,7 @@
       };
 
       if (flag) {
-        del();
+        editAndDel();
         flag = false;
       }
     </script>
