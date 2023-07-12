@@ -1,17 +1,8 @@
 <?php
-$xmlFile = file_get_contents("../xmlFile.xml");
-$xml = new SimpleXMLElement($xmlFile);
-
-// Loop through the XML elements
-foreach ($_POST as $key => $value) {
-  if (is_array($value)) {
-    // Update the XML element with the updated value
-    $xml->$key[0] = $value[0];
-  } else {
-    // Update the XML element with the updated value
-    $xml->$key = $value;
-  }
+if (isset($_POST['updatedXml'])) {
+  $updatedXml = $_POST['updatedXml'];
+  file_put_contents("../xmlFile.xml", $updatedXml);
+  echo "XML updated successfully";
+} else {
+  echo "No XML data received";
 }
-
-// Save the updated XML to the file
-$xml->asXML("../xmlFile.xml");

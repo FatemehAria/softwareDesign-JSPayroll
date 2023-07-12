@@ -57,6 +57,7 @@
         let data = await response.text();
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(data,'text/xml');
+        console.log(xmlDoc)
         data = data.split("<button>Delete</button><button>Edit</button>");
         const xmlData = xmlDoc.getElementsByTagName('button');
         for (let i = 0; i < data.length; i++) {
@@ -68,15 +69,15 @@
             preTag.innerHTML = '';
             button.innerHTML = '';
           })
+          // ************************EDIT*************************
           const editButton = document.createElement('button');
           editButton.textContent = 'Edit';
-          
           editButton.addEventListener("click",() => {
             const pTags = document.getElementsByTagName('p');
             const inputField = document.createElement('input');
-            // pTags[i].outerHTML = inputField;
             inputField.value = pTags[i].textContent;
             pTags[i].parentNode.replaceChild(inputField, pTags[i]);
+            console.log(xmlDoc)
             inputField.addEventListener("blur", () => {
             const updatedValue = inputField.value;
             const pTag = document.createElement('p');
@@ -84,30 +85,23 @@
             inputField.parentNode.replaceChild(pTag, inputField);
             const xmlData = xmlDoc.getElementsByTagName('p');
             xmlData[i].textContent = updatedValue;
-            
-            // Convert the XML to string
+
+            // *********************seding to xml*********************
             // const serializer = new XMLSerializer();
-            // const updatedXmlString = serializer.serializeToString(xmlDoc);
-            
-            // // Send a POST request to update the XML file
-            // fetch('server/update.php', {
-            //   method: 'POST',
-            //   headers: {
-            //     'Content-Type': 'application/xml',
-            //   },
-            //   body: updatedXmlString,
-            // })
-            // .then(response => response.text())
-            // .then(data => {
-            //   console.log('XML file updated successfully');
-            // })
-          });
-            // inputField.addEventListener("change" , () => {
-            //   let newData = inputField[i].value;
-            //   pTags[i].replace(pTags.innerHTML , newData)
-            // })
-            console.log("edit")
+            // const updatedXml = serializer.serializeToString(xmlDoc);
+            // console.log(updatedXml)
+            //   const formData = new FormData();
+            //   formData.append('updatedXml', updatedXml);
+            //   fetch('server/update.php', {
+            //       method: 'POST',
+            //       body: formData
+            //     })
+            //     .catch(error => {
+            //       console.error('An error occurred while updating XML on the server', error);
+            //     });
+            });
           })
+
           if(data[i].includes("<button>Delete</button>")){
             console.log(data[i])
             data[i] = data[i].replace("<button>Delete</button>", button.outerHTML);
@@ -122,28 +116,6 @@
         }
       }
 
-      // const edit = async () => {
-      //   const response = await fetch("./xmlFile.xml");
-      //   let data = await response.text();
-      //   const parser = new DOMParser();
-      //   const xmlDoc = parser.parseFromString(data, 'text/xml');
-      //   data = data.split("<button>Edit</button>");
-      //   for (let i = 0; i < data.length; i++) {
-      //     const editButton = document.createElement('button');
-      //     editButton.textContent = 'Edit';
-      //     editButton.addEventListener("click" , () => {
-      //       const preTag = editButton.previousElementSibling;
-      //       console.log(preTag)
-      //     })
-      //     if(data[i].includes("<button>Edit</button>")){
-      //       console.log(data[i])
-      //       data[i] = data[i].replace("<button>Edit</button>", editButton.outerHTML);
-      //     }
-      //     document.querySelector("#info").appendChild(editButton);
-      //     document.querySelector("#info").insertAdjacentHTML('beforeend', data[i]);
-      //   }
-      // }
-      
       const calcSallary = () => {
         xmlData.map((item, index) => {
           pos = item[4];

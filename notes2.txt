@@ -34,3 +34,12 @@
       // }
       // $.post("./xmlFile.xml" , xmlData )
       // })
+
+                    // .then(response => {
+              //   if (response.ok) {
+              //     console.log('XML updated successfully on the server');
+              //     // Redirect to the show.html page
+              //     window.location.href = './show.html';
+              //   } else {
+              //     console.error('Failed to update XML on the server');
+              //   }

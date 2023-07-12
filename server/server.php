@@ -1,5 +1,5 @@
 <?php
-$str .= "<div>";
+$str = "";
 foreach ($_POST as $key => $value) {
     if (is_array($value)) {
         $str .= "<pre>";
@@ -20,6 +20,6 @@ foreach ($_POST as $key => $value) {
     }
 }
 $str .= "<p>-------------------------------------</p>";
-$str .= "</div>";
-file_put_contents("../xmlFile.xml", $str, FILE_APPEND);
+$str1.= "<root>".$str."</root>";
+file_put_contents("../xmlFile.xml", $str1 , FILE_APPEND);
 header("Location:../show.html");
